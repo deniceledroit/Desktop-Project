@@ -1,14 +1,110 @@
 ﻿<Page x:Class="BGInventory.Views.DashboardView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BGInventory.Views"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewmodels="clr-namespace:BGInventory.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DashboardView">
+    <Page.DataContext>
+        <viewmodels:DashboardViewModel/>
+    </Page.DataContext>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="22"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.03*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="0.03*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                   FontSize="18">Liste des produits</TextBlock>
+        <DataGrid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                  ItemsSource="{Binding Products}"
+                  AutoGenerateColumns="False" IsReadOnly="True">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ProductRowSelectedCommand}"
+                                           CommandParameter="{Binding Path=SelectedItem,
+                        RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding Reference}"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Quantité" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Emplacement" Binding="{Binding Position}"/>
+                <DataGridTextColumn Header="Prix" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ScrollViewer Grid.Row="3" Grid.Column="1">
+            <StackPanel Margin="5,5" Visibility="{Binding DetailsStatus}">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="0,5,0,0"/>
+                        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock HorizontalAlignment="Center"
+                   FontSize="18">Détails</TextBlock>
+                <TextBlock>Nom :</TextBlock>
+                <TextBlock Text="{Binding Product.Name}"/>
+                <TextBlock>Description :</TextBlock>
+                <TextBlock Text="{Binding Product.Description}"/>
+                <TextBlock>Fournisseur :</TextBlock>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="5,5,0,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock>Nom :</TextBlock>
+                    <TextBlock Text="{Binding Product.Supplier.Name}"/>
+                    <TextBlock>Adresse :</TextBlock>
+                    <TextBlock Text="{Binding Product.Supplier.StreetAddress}"/>
+                    <TextBlock>Ville :</TextBlock>
+                    <TextBlock Text="{Binding Product.Supplier.City}"/>
+                </StackPanel>
+                <Button Name="btn_edit_product" Content="Volet de modification">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ProductEditCommand}"
+                                                   CommandParameter="{RelativeSource Mode=FindAncestor,AncestorType=Button}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Name="stp_edit" Grid.Row="3" Grid.Column="2" Margin="5,5" Visibility="{Binding EditStatus}">
+            <TextBox Text="{Binding Path=Product.Id}" Visibility="Collapsed"/>
+            <TextBlock>Nom :</TextBlock>
+            <TextBox Text="{Binding Path=Product.Name}"></TextBox>
+            <TextBlock>Description :</TextBlock>
+            <TextBox Text="{Binding Path=Product.Description}"></TextBox>
+            <TextBlock>Emplacement :</TextBlock>
+            <TextBox Text="{Binding Path=Product.Position}"></TextBox>
+            <TextBlock>Quantité :</TextBlock>
+            <TextBox Text="{Binding Path=Product.Quantity}"></TextBox>
+            <Button Margin="50,5" Content="Modifier">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding ProductUpdateCommand}"
+                                                   CommandParameter="{RelativeSource Mode=FindAncestor,AncestorType=Button}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
         
     </Grid>
 </Page>

@@ -36,7 +36,7 @@
 
     <mah:HamburgerMenu x:Name="HamburgerMenuControl"
                        Foreground=" White"
-                       PaneBackground="#FF444444"
+                       PaneBackground="SaddleBrown"
                        IsPaneOpen="False"
                        DisplayMode="CompactInline"
                        ItemTemplate="{StaticResource MenuItemTemplate}"
@@ -53,6 +53,11 @@
                         <views:DashboardView />
                     </mah:HamburgerMenuGlyphItem.Tag>
                 </mah:HamburgerMenuGlyphItem>
+                <mah:HamburgerMenuGlyphItem Glyph="Plus" Label="Ajouter un produit">
+                    <mah:HamburgerMenuGlyphItem.Tag>
+                        <views:AddProductView />
+                    </mah:HamburgerMenuGlyphItem.Tag>
+                </mah:HamburgerMenuGlyphItem>
             </mah:HamburgerMenuItemCollection>
         </mah:HamburgerMenu.ItemsSource>
         <!--  Content  -->
@@ -64,7 +69,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0"
-                    Background="#FF444444">
+                    Background="SaddleBrown">
                         <TextBlock x:Name="Header"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -75,7 +80,7 @@
                     <Frame x:Name="TheContent"
                             Grid.Row="1"
                             Focusable="False"
-                            Foreground="#FF444444"
+                            Foreground="SaddleBrown"
                             NavigationUIVisibility="Hidden"
                             Content="{Binding Tag}" />
                 </Grid>

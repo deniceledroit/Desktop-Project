@@ -45,5 +45,47 @@ namespace BGInventory.Models
             
             return clientApi.Execute(request);
         }
+        public static RestResponse PutWithToken(String route, Dictionary<String, String> fields = null)
+        {
+
+            OAuth2AuthorizationRequestHeaderAuthenticator authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Token, "Bearer");
+            RestClientOptions options = new RestClientOptions(Api._url)
+            {
+                Authenticator = authenticator,
+            };
+            RestClient clientApi = new RestClient(options);
+            RestRequest request = new RestRequest(route, Method.Put);
+            if (null != fields)
+            {
+                foreach (KeyValuePair<String, String> field in fields)
+                {
+                    request.AddParameter(field.Key, field.Value);
+                }
+            }
+
+            return clientApi.Execute(request);
+        }
+        public static RestResponse PostWithToken(String route, Dictionary<String, String> fields = null)
+        {
+            Console.WriteLine("Api - PostWithToken");
+
+            OAuth2AuthorizationRequestHeaderAuthenticator authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Token, "Bearer");
+
+            RestClientOptions options = new RestClientOptions(Api._url)
+            {
+                Authenticator = authenticator
+            };
+            RestClient clientApi = new RestClient(options);
+
+            RestRequest request = new RestRequest(route, Method.Post);
+            if (null != fields)
+            {
+                foreach (KeyValuePair<String, String> field in fields)
+                {
+                    request.AddParameter(field.Key, field.Value);
+                }
+            }
+            return clientApi.Execute(request);
+        }
     }
 }

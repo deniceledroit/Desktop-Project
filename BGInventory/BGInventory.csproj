@@ -212,6 +212,17 @@
     </Compile>
     <Compile Include="Models\Api.cs" />
     <Compile Include="Models\Auth.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductDAO.cs" />
+    <Compile Include="Models\Storage.cs" />
+    <Compile Include="Models\StorageDAO.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\SupplierDAO.cs" />
+    <Compile Include="ViewModels\AddProductViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="Views\AddProductView.xaml.cs">
+      <DependentUpon>AddProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AuthenticateWindow.xaml.cs">
       <DependentUpon>AuthenticateWindow.xaml</DependentUpon>
     </Compile>
@@ -249,10 +260,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="Views\AddProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AuthenticateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
