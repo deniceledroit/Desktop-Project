@@ -13,11 +13,12 @@ namespace BGInventory.Models
         public class SuccessMessage
         {
             public string Token { get; set; }
+            public int Role { get; set; }
         }
 
         public SuccessMessage Success { get; set; }
 
-        public static String Login(String email, String pwd)
+        public static Dictionary<String, String> Login(String email, String pwd)
         {
             Dictionary<String, String> userCredentials = new Dictionary<String, String>();
 
@@ -29,21 +30,22 @@ namespace BGInventory.Models
 
             Console.WriteLine(response.Content);
 
-            string message = "";
+            Dictionary<String, String> list = new Dictionary<String, String>();
             switch (response.StatusCode)
             {
                 case System.Net.HttpStatusCode.OK:
-                    message = "Success";
+                    list.Add("message","Success");
+                    list.Add("role", result.Success.Role.ToString());
                     Api.Token = result.Success.Token;
                     break;
                 case System.Net.HttpStatusCode.Unauthorized:
-                    message = "Unthorized access. Please try again !";
+                    list.Add("message", "Unthorized access. Please try again !");
                     break;
                 default:
-                    message = "Something wrong occured with the connection to database.";
+                    list.Add("message", "Something wrong occured with the connection to database.");
                     break;
             }
-            return message;
+            return list;
         }
     }
 }

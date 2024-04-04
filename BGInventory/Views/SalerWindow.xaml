@@ -1,4 +1,4 @@
-﻿<mah:MetroWindow x:Class="BGInventory.Views.ShellWindow"
+﻿<mah:MetroWindow x:Class="BGInventory.Views.SalerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="BGInventory - Gestion du stock AirSoft (Agent)" Height="450" Width="800" WindowState="Maximized">
+        Title="BGInventory - Gestion du stock AirSoft (Commercial)" Height="450" Width="800" WindowState="Maximized">
 
     <mah:MetroWindow.Resources>
         <!-- Design template for each Hamburger menu's item -->
@@ -51,11 +51,6 @@
                 <mah:HamburgerMenuGlyphItem Glyph="Home" Label="Tableau de bord">
                     <mah:HamburgerMenuGlyphItem.Tag>
                         <views:DashboardView />
-                    </mah:HamburgerMenuGlyphItem.Tag>
-                </mah:HamburgerMenuGlyphItem>
-                <mah:HamburgerMenuGlyphItem Glyph="Plus" Label="Ajouter un produit">
-                    <mah:HamburgerMenuGlyphItem.Tag>
-                        <views:AddProductView />
                     </mah:HamburgerMenuGlyphItem.Tag>
                 </mah:HamburgerMenuGlyphItem>
                 <mah:HamburgerMenuGlyphItem Glyph="Account" Label="Utilisateur">

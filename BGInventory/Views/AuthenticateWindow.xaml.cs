@@ -27,17 +27,29 @@ namespace BGInventory.Views
         }
         private void Btn_Signin_Click(object sender, RoutedEventArgs e)
         {
-            String message = Auth.Login(tbx_email.Text, pbx_password.Password);
-            if (message == "Success")
+            Dictionary<String,String> informations = Auth.Login(tbx_email.Text, pbx_password.Password);
+            if (informations["message"] == "Success")
             {
-                ShellWindow mainWindow = new ShellWindow();
-                mainWindow.Show();
+                switch (informations["role"])
+                {
+                    case "1":
+                        ShellWindow agentWindow = new ShellWindow();
+                        agentWindow.Show();
 
-                this.Close();
+                        this.Close();
+                        break;
+                    case "2":
+                        SalerWindow salerWindow = new SalerWindow();
+                        salerWindow.Show();
+
+                        this.Close();
+                        break;
+                }
+                
             }
             else
             {
-                tbx_message.Text = message;
+                tbx_message.Text = informations["message"];
             }
 
         }
