@@ -25,7 +25,7 @@ namespace BGInventory.ViewModels
             _suppliers = SupplierDAO.All();
             Supplier = new Supplier(1, "", "", "", "");
             Storage = new Storage(0, "", "", "");
-            NewProduct = new Product(0,"","","",0,"",Storage,Supplier);
+            NewProduct = new Product(0,"","","","0","",Storage,Supplier);
         }
         private void ProductCreateAction(object SelectedItem)
         {

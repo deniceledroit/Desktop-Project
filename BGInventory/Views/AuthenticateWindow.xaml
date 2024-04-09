@@ -6,19 +6,19 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:BGInventory.Views"
         mc:Ignorable="d"
-        Title="BGInventory - Connexion" Height="450" Width="800">
+        Title="BGInventory - Connexion" Height="475" Width="800" MinHeight="475">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="0.02*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="0.02*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"></ColumnDefinition>
+            <ColumnDefinition Width="0.02*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="0.05*"></ColumnDefinition>
+            <ColumnDefinition Width="0.02*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="0.05*"></ColumnDefinition>
+            <ColumnDefinition Width="0.02*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
@@ -32,8 +32,8 @@
         
         <Grid Grid.Column="1" Grid.Row="1">
             <StackPanel VerticalAlignment="Center">
-                <Image Source="/Assets/placeholder.png"></Image>
-                <TextBlock FontSize="30" Foreground="SaddleBrown"
+                <Image Source="/Assets/storage.png"></Image>
+                <TextBlock FontSize="25" Foreground="SaddleBrown"
                 HorizontalAlignment="Center" VerticalAlignment="Center">BGInventory</TextBlock>
             </StackPanel>
         </Grid>

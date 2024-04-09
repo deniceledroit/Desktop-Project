@@ -38,6 +38,17 @@ namespace BGInventory.Models
             productFields.Add("position",product.Position);
             Api.PutWithToken("product/"+product.Id, productFields);
         }
+        public static void UpdatePrice(Product product)
+        {
+            var productFields = new Dictionary<string, string>();
+            productFields.Add("id", product.Id.ToString());
+            productFields.Add("name", product.Name);
+            productFields.Add("description", product.Description);
+            productFields.Add("quantity", product.Quantity.ToString());
+            productFields.Add("position", product.Position);
+            productFields.Add("price", product.Price);
+            Api.PutWithToken("product/" + product.Id, productFields);
+        }
         public static void Create(Product product)
         {
             var productFields = new Dictionary<string, string>();

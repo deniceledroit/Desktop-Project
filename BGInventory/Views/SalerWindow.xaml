@@ -50,7 +50,12 @@
             <mah:HamburgerMenuItemCollection>
                 <mah:HamburgerMenuGlyphItem Glyph="Home" Label="Tableau de bord">
                     <mah:HamburgerMenuGlyphItem.Tag>
-                        <views:DashboardView />
+                        <views:SalerView />
+                    </mah:HamburgerMenuGlyphItem.Tag>
+                </mah:HamburgerMenuGlyphItem>
+                <mah:HamburgerMenuGlyphItem Glyph="Truck" Label="Transit de marchandises">
+                    <mah:HamburgerMenuGlyphItem.Tag>
+                        <views:TransitView />
                     </mah:HamburgerMenuGlyphItem.Tag>
                 </mah:HamburgerMenuGlyphItem>
                 <mah:HamburgerMenuGlyphItem Glyph="Account" Label="Utilisateur">
